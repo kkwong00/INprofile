@@ -1,0 +1,13 @@
+name = "IMCE Crop"
+description = "Adds image cropping functionality to IMCE"
+core = "7.x"
+package = "Media"
+dependencies[] = "imce"
+
+
+; Information added by drupal.org packaging script on 2011-04-13
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "imce_crop"
+datestamp = "1302653943"
+
