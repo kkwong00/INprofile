@@ -47,6 +47,7 @@ stylesheets[all][]        = css/comments.css
 stylesheets[all][]        = css/forms.css
 stylesheets[all][]        = css/fields.css
 stylesheets[print][]      = css/print.css
+stylesheets[all][]        = styles.css
 
 ; Example of adding handheld stylesheets. The iPhone's preferred media type
 ; is based on the CSS3 Media queries. http://www.w3.org/TR/css3-mediaqueries/
