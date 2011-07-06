@@ -1,4 +1,14 @@
-#page {
+/* Color Schemes
+
+Headers: #000000;
+Links: #000000;
+Body: #666666;
+Background: 
+
+*/
+
+/** HTML ELEMENTS **/
+#page, body#tinymce{
   /*
    * To use a 12px font size on the page, delete the 14px declarations.
    * to use a 14px font size on the page, delete the 12px declarations.
@@ -9,20 +19,11 @@
   line-height: 1.5em; /* 12px x 1.5 = 18px */
 
   /* Use a 14px base font size with a 21px line height */
-  font-size: 0.875em; /* 16px x .875 = 14px */
-  line-height: 1.5em; /* 14px x 1.5 = 21px */
+/*  font-size: 0.875em; /* 16px x .875 = 14px */
+/*  line-height: 1.5em; /* 14px x 1.5 = 21px */
 }
 
-body,
-caption,
-th,
-td,
-input,
-textarea,
-select,
-option,
-legend,
-fieldset {
+body, caption, th, td, input, textarea, select, option, legend, fieldset {
   /* The following font family declarations are based on the Microsoft core web
    * fonts which are common fonts available on most computer systems. The DejaVu
    * and Nimbus Sans fonts are commonly available on Linux systems where the MS
@@ -47,10 +48,14 @@ fieldset {
 
    */
 
-  font-family: Verdana, Tahoma, "DejaVu Sans", sans-serif;
+  font-family: Arial, Helvetica, "Nimbus Sans L", sans-serif;
 }
 
 /* Headings */
+h1, h2, h3, h4, h5, h6{
+	color: #000000;
+} 
+
 h1 {
   font-size: 2em;
   line-height: 1.5em;
@@ -90,6 +95,8 @@ p {
  * http://meyerweb.com/eric/thoughts/2007/06/11/who-ordered-the-link-states
  */
 a:link {
+	color: #000000;
+	outline: none;	
 }
 
 a:visited {
@@ -100,4 +107,76 @@ a:focus {
 }
 
 a:active {
+}
+
+/** Block **/
+.block{
+}
+
+/** Header **/
+#header{
+}
+
+#logo{
+}
+
+h1#site-name, div#site-name{
+}
+
+#navigation{
+}
+
+.with-navigation #content, .with-navigation .region-sidebar-first, .with-navigation .region-sidebar-second {
+	margin-top: 3em;
+}
+
+/** Sidebar Left **/
+.region-sidebar-first{
+}
+
+/** Content Area **/
+#content {
+}
+
+.submitted {
+	font-size: smaller;
+}
+
+/** Sidebar Right **/
+.region-sidebar-second{
+}
+
+/** Footer **/
+.region-footer{
+}
+
+/** OTHERS **/
+
+
+/* Optional: Disable views admin link for block, since zen themes have simliar links for blocks
+.block .views-admin-links ul.links{
+	display: none;
+}
+/**/
+
+/* Tinymce Style */
+
+.caption {
+	background: #ddd;
+	font-size: smaller;
+	text-align: center;
+}	
+
+
+/* node block: hover to show links */
+.block-nodeblock .content{
+	position: relative;
+}
+.block-nodeblock ul.links{
+	position: absolute;
+	display: none;
+	top: 0;
+}
+.block-nodeblock .content:hover ul.links.inline{
+	display: block;
 }
