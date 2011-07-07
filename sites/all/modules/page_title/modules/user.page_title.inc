@@ -28,3 +28,18 @@ function user_page_title_pattern_alter(&$pattern, &$types) {
     $pattern = variable_get('page_title_user', '');
   }
 }
+
+
+/**
+ * Implementation of hook_page_title_settings().
+ */
+function user_page_title_settings() {
+  return array(
+    'page_title_user' => array(
+      'label' => 'User Profile',
+      'scopes' => array('global', 'user'),
+      'show field' => TRUE,
+      'description' => 'This pattern will be used for a user profile page (eg <code>/user/1</code>)',
+    ),
+  );
+}

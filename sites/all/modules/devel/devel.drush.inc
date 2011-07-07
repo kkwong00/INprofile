@@ -18,7 +18,7 @@ function devel_drush_command() {
   $items['devel-reinstall'] = array(
     'description' => dt('Disable, Uninstall, and Install a list of projects.'),
     'arguments' => array(
-      'path' => dt('A space separated list of project names.'),
+      'projects' => dt('A space separated list of project names.'),
     ),
     'aliases' => array('dre'),
   );
@@ -95,18 +95,18 @@ function drush_devel_download() {
       $path .= '/' . libraries_get_path('FirePHPCore') . '/FirePHPCore';
     }
     else {
-      $path .= '/'. drupal_get_path('module', 'devel') . '/FirePHPCore';
+      $path .= '/' . drupal_get_path('module', 'devel') . '/FirePHPCore';
     }
   }
 
   if (is_dir($path)) {
     drush_log('FirePHP already present. No download required.', 'ok');
   }
-  elseif (drush_shell_exec('svn checkout http://firephp.googlecode.com/svn/branches/Library-FirePHPCore-0.3 ' . $path)) {
-    drush_log(dt('FirePHP has been checked out via svn to @path.', array('@path' => $path)), 'success');
+  elseif (drush_shell_exec('svn export http://firephp.googlecode.com/svn/branches/Library-FirePHPCore-0.3 ' . $path)) {
+    drush_log(dt('FirePHP has been exported via svn to @path.', array('@path' => $path)), 'success');
   }
   else {
-    drush_log(dt('Drush was unable to checkout FirePHP to @path.', array('@path' => $path)), 'error');
+    drush_log(dt('Drush was unable to export FirePHP to @path.', array('@path' => $path)), 'error');
   }
 }
 
@@ -121,7 +121,7 @@ function drush_devel_post_pm_enable() {
 }
 
 /**
- * Command handler. Show hook implementations
+ * Command handler. Show hook implementations.
  */
 function drush_devel_fn_hook($hook) {
   // Get implementations in the .install files as well.

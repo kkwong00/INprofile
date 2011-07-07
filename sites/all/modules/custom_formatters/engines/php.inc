@@ -12,7 +12,6 @@ function custom_formatters_engine_php_theme_alter(&$theme) {
     ),
     'template' => 'php.export',
     'path' => drupal_get_path('module', 'custom_formatters') . '/engines',
-    //'file' => 'php.inc',
   );
 }
 
@@ -21,6 +20,13 @@ function custom_formatters_engine_php_theme_alter(&$theme) {
  */
 function custom_formatters_engine_php_settings_form(&$form) {
   $form['code']['#description'] = t('Enter the PHP code that will be evaluated. You should NOT include %php tags. The $variables object is available.', array('%php' => '<?php ?>'));
+
+  $form['preview']['options']['dpm'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Output !variables array (requires !devel module).', array('!variables' => '<strong>' . t('$variables') . '</strong>', '!devel' => l(t('Devel'), 'http://drupal.org/project/devel'))),
+    '#default_value' => module_exists('devel'),
+    '#disabled' => !module_exists('devel'),
+  );
 }
 
 /**
@@ -53,6 +59,11 @@ function custom_formatters_engine_php_render($formatter, $obj_type, $object, $fi
     '#display' => $display,
   );
 
+  // DPM $variables.
+  if (module_exists('devel') && isset($formatter->preview) && $formatter->preview['options']['dpm']) {
+    dpm($variables);
+  }
+
   ob_start();
   print eval($formatter->code);
   $output = ob_get_contents();
@@ -69,4 +80,12 @@ function custom_formatters_engine_php_render($formatter, $obj_type, $object, $fi
  */
 function custom_formatters_engine_php_export($item, $module) {
   return theme('custom_formatters_php_export', array('item' => $item, 'module' => $module));
+}
+
+/**
+ * Help callback for Custom Formatters PHP engine.
+ */
+function custom_formatters_engine_php_help() {
+  return t('A PHP Formatter is essentially a standard Drupal API Field Formatter, the primary difference is that all availble parameters have been bundled into a !variables array for ease of use.', array('!variables' => '<strong>$variables</strong>')) . "<br />\n"
+       . t('The Formatter should be PHP code that returns a value and it should NOT include %php tags.', array('%php' => '<?php ?>')) . "\n";
 }

@@ -42,6 +42,7 @@ Recommended Modules
 --------------------------------------------------------------------------------
 
 * Devel - http://drupal.org/project/devel
+* Token - http://drupal.org/project/token
 
 
 Roadmap

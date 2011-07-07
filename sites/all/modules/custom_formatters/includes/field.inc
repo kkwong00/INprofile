@@ -29,7 +29,7 @@ function custom_formatters_field_formatter_view($obj_type, $object, $field, $ins
   $element = array();
 
   $formatter = empty($formatter) ? custom_formatters_crud_load(drupal_substr($display['type'], 18)) : $formatter;
-  if (isset($formatter)) {
+  if (isset($formatter) && !empty($items)) {
     $engines = module_invoke_all('custom_formatters_engine_info');
     $engine = $formatter->mode;
     if (isset($engines[$engine]['file']) && file_exists($engines[$engine]['file'])) {

@@ -109,7 +109,6 @@ function custom_formatters_export_ui_form(&$form, &$form_state) {
     '#required' => TRUE,
     '#rows' => 10,
   );
-  $engines[$engine]['callbacks']['settings form']($form['engine'], $form_state, $item);
 
   $options = _custom_formatters_preview_variables($form, $form_state);
   $form['engine']['preview'] = array(
@@ -158,6 +157,9 @@ function custom_formatters_export_ui_form(&$form, &$form_state) {
     '#options' => $options['entities'],
     '#disabled' => empty($options['entities']),
   );
+  $form['engine']['preview']['options'] = array(
+    '#type' => 'container',
+  );
   $form['engine']['preview']['button'] = array(
     '#type' => 'button',
     '#value' => t('Preview'),
@@ -172,6 +174,8 @@ function custom_formatters_export_ui_form(&$form, &$form_state) {
     '#prefix' => '<div id="preview-wrapper">',
     '#suffix' => '</div>',
   );
+
+  $engines[$engine]['callbacks']['settings form']($form['engine'], $form_state, $item);
 
   $form['buttons']['edit'] = array(
     '#type' => 'submit',
@@ -392,10 +396,13 @@ function theme_custom_formatters_export_ui_form_preview($variable) {
         render($form['field']),
         render($form['entity']),
       ),
+      array(
+        array('data' => render($form['options']), 'colspan' => 3),
+        render($form['button'])
+      ),
     ),
   ));
 
-  $output .= render($form['button']);
   $output .= render($form['preview']);
 
   return $output;

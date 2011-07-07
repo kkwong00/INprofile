@@ -211,6 +211,7 @@ function devel_generate_terms($records, $vocabs, $maxlength = 12) {
   $max = db_query('SELECT MAX(tid) FROM {taxonomy_term_data}')->fetchField();
   $start = time();
   for ($i = 1; $i <= $records; $i++) {
+    $term = new stdClass;
     switch ($i % 2) {
       case 1:
         // Set vid and vocabulary_machine_name properties.
@@ -570,7 +571,8 @@ function devel_create_greeking($word_count, $title = FALSE) {
   else {
     // Use slightly different method for titles.
     $words = array_rand($dictionary_flipped, $word_count);
-    $greeking = ucwords(implode(' ', $words));
+    $words = is_array($words) ? implode(' ', $words) : $words;
+    $greeking = ucwords($words);
   }
 
   // Work around possible php garbage collection bug. Without an unset(), this
@@ -699,7 +701,7 @@ function devel_generate_content_add_node(&$results) {
  */
 function devel_generate_set_language($results, $object) {
   if (isset($results['add_language'])) {
-    $languages = array_keys($results['add_language']);
+    $languages = $results['add_language'];
     $object->language = $languages[array_rand($languages)];
   }
   else {

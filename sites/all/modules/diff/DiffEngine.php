@@ -239,7 +239,7 @@ class _DiffEngine {
    */
   function _line_hash($line) {
     if (strlen($line) > $this->MAX_XREF_LENGTH()) {
-      return md5( line);
+      return md5($line);
     }
     else {
       return $line;

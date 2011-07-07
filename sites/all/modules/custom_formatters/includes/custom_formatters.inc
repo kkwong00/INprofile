@@ -17,6 +17,7 @@ function custom_formatters_custom_formatters_engine_info() {
       'settings form' => 'custom_formatters_engine_php_settings_form',
       'render' => 'custom_formatters_engine_php_render',
       'export' => 'custom_formatters_engine_php_export',
+      'help' => 'custom_formatters_engine_php_help',
     ),
     'file' => drupal_get_path('module', 'custom_formatters') . '/engines/php.inc',
   );

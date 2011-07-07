@@ -5,13 +5,45 @@
  */
 
 /**
+ * Implements hook_custom_formatters_form_alter_alter() on behalf of
+ * contextual.module.
+ */
+function contextual_custom_formatters_form_alter_alter(&$form, $form_state, $form_id) {
+  if ($form_id == 'custom_formatters_settings_form') {
+    $settings = variable_get('custom_formatters_settings', array('contextual' => 1));
+
+    $form['settings']['contextual'] = array(
+      '#type' => 'radios',
+      '#title' => t('Contextual links integration'),
+      '#default_value' => isset($settings['contextual']) ? $settings['contextual'] : 1,
+      '#options' => array(
+        0 => t('Disabled'),
+        1 => t('Enabled on all Formatters except those listed'),
+        2 => t('Enabled on only the listed Formatters'),
+      ),
+    );
+
+    $form['settings']['contextual_list'] = array(
+      '#type' => 'textarea',
+      '#default_value' => isset($settings['contextual_list']) ? $settings['contextual_list'] : '',
+      '#description' => t('Specify Formatters by using their machine names. Enter one machine name per line.'),
+      '#states' => array(
+        'visible' => array(
+          'input[name="settings[contextual]"]' => array('checked' => FALSE),
+        ),
+      ),
+    );
+  }
+}
+
+/**
  * Implements hook_custom_formatters_field_formatter_view_element_alter() on
  * behalf of contextual.module.
  *
  * Adds contextual links to Custom Formatter fields.
  */
 function contextual_custom_formatters_field_formatter_view_element_alter(&$element, $formatter) {
-  if (user_access('access contextual links') && user_access('administer custom formatters')) {
+  if (user_access('access contextual links') && user_access('administer custom formatters') && _custom_formatters_contextual_access($formatter->name)) {
     $element[0] = array(
       'markup' => $element[0],
       'contextual_links' => array(
@@ -22,6 +54,23 @@ function contextual_custom_formatters_field_formatter_view_element_alter(&$eleme
       '#prefix' => '<div class="contextual-links-region">',
       '#suffix' => '</div>',
     );
+  }
+}
+
+function _custom_formatters_contextual_access($name) {
+  $settings = variable_get('custom_formatters_settings', array('contextual' => 1));
+  $contextual = isset($settings['contextual']) ? $settings['contextual'] : 1;
+  $list = array_unique(explode("\r\n", isset($settings['contextual_list']) ? $settings['contextual_list'] : ''));
+
+  switch ($contextual) {
+    case 0:
+      return FALSE;
+
+    case 1:
+      return !in_array($name, $list) ? TRUE : FALSE;
+
+    case 2:
+      return in_array($name, $list) ? TRUE : FALSE;
   }
 }
 

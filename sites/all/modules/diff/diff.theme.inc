@@ -303,7 +303,7 @@ function theme_diff_inline_metadata($vars) {
   $output .= "<label>". t('Legend') ."</label>";
   $output .= theme('diff_inline_chunk', array('text' => t('Added'), 'type' => 'add'));
   $output .= theme('diff_inline_chunk', array('text' => t('Changed'), 'type' => 'change'));
-  $output .= theme('diff_inline_chunk', array('text' => t('Deleted'), 'type' => 'relete'));
+  $output .= theme('diff_inline_chunk', array('text' => t('Deleted'), 'type' => 'delete'));
   $output .= "</div>";
   $output .= "</div>";
   return $output;

@@ -32,3 +32,19 @@ function blog_page_title_pattern_alter(&$pattern, &$types) {
     $pattern = variable_get('page_title_blog', '');
   }
 }
+
+
+/**
+ * Implementation of hook_page_title_settings().
+ */
+function blog_page_title_settings() {
+  return array(
+    'page_title_blog' => array(
+      'label' => 'Blog Homepage',
+      'scopes' => array('global', 'user'),
+      'show field' => FALSE,
+      'description' => 'This pattern will be used for a users blog page (ie <code>/blog/1</code>)',
+    ),
+  );
+}
+

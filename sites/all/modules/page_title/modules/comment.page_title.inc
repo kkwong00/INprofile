@@ -18,7 +18,7 @@ function comment_page_title_alter(&$title) {
     // to have a custom page title (ie, it's not a leftover from a previous
     // setting), then use it.
     if ( !empty($node->page_title) &&
-         variable_get('page_title_type_'. $node->type .'_showfield', 0) ) {
+         variable_get('page_title_type_' . $node->type . '_showfield', 0) ) {
       $title = $node->page_title;
     }
     // Otherwise set the page-title token to the parent node title. Makes more
@@ -49,7 +49,7 @@ function comment_page_title_pattern_alter(&$pattern, &$types) {
       $types['taxonomy'] = current($types['node']->taxonomy);
     }
 
-    if (is_numeric(arg(3)) && ($comment = menu_get_object('comment',3))) {
+    if (is_numeric(arg(3)) && ($comment = menu_get_object('comment', 3))) {
       // Comment Reply...
       $types['comment'] = $comment;
       $pattern = variable_get('page_title_comment_child_reply', '');
@@ -59,4 +59,23 @@ function comment_page_title_pattern_alter(&$pattern, &$types) {
       $pattern = variable_get('page_title_comment_reply', '');
     }
   }
+}
+
+
+/**
+ * Implementation of hook_page_title_settings().
+ */
+function comment_page_title_settings() {
+  return array(
+    'page_title_comment_reply' => array(
+      'label' => 'Comment Reply',
+      'scopes' => array('global', 'node'),
+      'description' => 'This pattern will be used for comment reply pages, where the reply is directly to a "node"',
+    ),
+    'page_title_comment_child_reply' => array(
+      'label' => 'Comment Child Reply',
+      'scopes' => array('global', 'comment', 'node'),
+      'description' => 'This pattern with be used for comment reply pages where the reply is to an existing "comment" (eg a comment thread)',
+    ),
+  );
 }

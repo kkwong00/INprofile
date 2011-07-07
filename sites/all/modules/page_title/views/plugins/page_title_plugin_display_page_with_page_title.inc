@@ -22,7 +22,7 @@ class page_title_plugin_display_page_with_page_title extends views_plugin_displa
       $title = t('None');
     }
     elseif (drupal_strlen($title) > 16) {
-      $title = drupal_substr($title, 0, 16) .'...';
+      $title = drupal_substr($title, 0, 16) . '...';
     }
 
     $options['page_title_pattern'] = array(

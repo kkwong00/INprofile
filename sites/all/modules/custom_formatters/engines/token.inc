@@ -15,7 +15,6 @@ function custom_formatters_engine_token_theme_alter(&$theme) {
     ),
     'template' => 'token.export',
     'path' => drupal_get_path('module', 'custom_formatters') . '/engines',
-    //'file' => 'php.inc',
   );
 }
 
@@ -78,6 +77,17 @@ function custom_formatters_engine_token_render($formatter, $obj_type, $object, $
   return $output;
 }
 
+/**
+ * Export callback for Custom Formatters Token engine.
+ */
 function custom_formatters_engine_token_export($item, $module) {
   return theme('custom_formatters_token_export', array('item' => $item, 'module' => $module));
+}
+
+/**
+ * Help callback for Custom Formatters Token engine.
+ */
+function custom_formatters_engine_token_help() {
+  return t('A HTML + Token Formatter utilizes Drupal Tokens and the Token module to create easy yet powerful formatters.') . "<br />\n"
+       . t('All available Tokens can be navigated via the Tokens fieldset displayed below the Formatter field.');
 }
