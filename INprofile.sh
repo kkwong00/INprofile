@@ -21,9 +21,9 @@ createDirCase () {
 #Download Drupal
 DRUPAL=drupal-7.4;
 
-#drush dl $DRUPAL
-#cp -pra $DRUPAL/. .
-#rm -rf $DRUPAL
+drush dl $DRUPAL
+cp -pra $DRUPAL/. www/
+rm -rf $DRUPAL
 
 
 #Drupal Installation
@@ -31,6 +31,6 @@ echo "Create site directory from default? (y/n)"
 read createDir
 createDirCase
 
-if $createDir
+#if $createDir
 
 #Download 
