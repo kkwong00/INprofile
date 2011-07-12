@@ -8,7 +8,7 @@ DRUPAL=drupal-7.4
 BASEPATH=www
 
 #Just for local testing
-alias drush='/Users/kelvin/Sites/INprofile/drush/drush'
+#alias drush='/Users/kelvin/Sites/INprofile/drush/drush'
 
 
 createDirCase () {
@@ -37,6 +37,14 @@ createDirCase () {
 	esac
 } 
 
+#Download and install Drush
+wget http://ftp.drupal.org/files/projects/drush-7.x-4.4.tar.gz
+tar -xzf drush-7.x-4.4.tar.gz
+rm -f drush-7.x-4.4.tar.gz
+echo "alias drush='php ~/drush/drush.php'" >> ~/.bash_profile
+source .bash_profile
+drush status
+
 #Download Drupal
 
 #drush dl $DRUPAL
@@ -45,8 +53,8 @@ createDirCase () {
 
 
 #Drupal Installation
-echo "Create site directory from default? (y/n)"
-read createDir
-createDirCase
+#echo "Create site directory from default? (y/n)"
+#read createDir
+#createDirCase
 
 #Download 
