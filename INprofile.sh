@@ -32,7 +32,7 @@ read db_user
 echo "Please enter the datebase password:"
 read db_pwd
 
-drush site-install standard --sites-subdir=$site_dir --db-url=mysql://$db_user:$db_pwd@localhost/$db_name
+drush site-install standard --sites-subdir=$site_dir --db-url=mysql://$db_user:$db_pwd@localhost/$db_name --account-name='Site Admin' --account-pass=$db_pwd
 
 
 #Contribution modules
