@@ -35,6 +35,32 @@ read db_pwd
 drush site-install standard --sites-subdir=$site_dir --db-url=mysql://$db_user:$db_pwd@localhost/$db_name --account-name='Site Admin' --account-pass=$db_pwd
 
 
-#Contribution modules
-drush dl admin_menu-7.x-3.x-dev ctools-7.x-1.x-dev devel-7.x-1.x-dev zenophile-7.x-1.0 custom_formatters-7.x-2.x-dev filefield_sources-7.x-1.4 imce-7.x-1.4 imce_crop-7.x-1.x-dev imce_mkdir-7.x-1.x-dev block_titlelink-7.x-1.x-dev diff-7.x-2.x-dev globalredirect-7.x-1.x-dev iconizer-7.x-1.1 image_caption-7.x-1.0-beta3 invisimail-7.x-1.x-dev masquerade-7.x-1.x-dev nodeblock-7.x-1.1 pathauto-7.x-1.x-dev token-7.x-1.0-beta2 page_title-7.x-2.x-dev google_analytics-7.x-1.x-dev extlink-7.x-1.12 imce_wysiwyg-7.x-1.x-dev wysiwyg-7.x-2.1 views-7.x-3.0-rc1 xmlsitemap-7.x-2.0-beta3 zen-7.x-3.x-dev
+#Download Contribution modules
+drush dl admin_menu-7.x-3.x-dev
+drush dl ctools-7.x-1.x-dev
+drush dl devel-7.x-1.x-dev
+drush dl zenophile-7.x-1.0
+drush dl custom_formatters-7.x-2.x-dev
+drush dl filefield_sources-7.x-1.4
+drush dl imce-7.x-1.4
+drush dl imce_crop-7.x-1.x-dev
+drush dl imce_mkdir-7.x-1.x-dev
+drush dl block_titlelink-7.x-1.x-dev
+drush dl diff-7.x-2.x-dev
+drush dl globalredirect-7.x-1.x-dev
+drush dl iconizer-7.x-1.1
+drush dl image_caption-7.x-1.0-beta3
+drush dl invisimail-7.x-1.x-dev
+drush dl masquerade-7.x-1.x-dev
+drush dl nodeblock-7.x-1.1
+drush dl pathauto-7.x-1.x-dev
+drush dl token-7.x-1.0-beta2
+drush dl page_title-7.x-2.x-dev
+drush dl google_analytics-7.x-1.x-dev
+drush dl extlink-7.x-1.12
+drush dl imce_wysiwyg-7.x-1.x-dev
+drush dl wysiwyg-7.x-2.1
+drush dl views-7.x-3.0-rc1
+drush dl xmlsitemap-7.x-2.0-beta3
+drush dl zen-7.x-3.x-dev
 
