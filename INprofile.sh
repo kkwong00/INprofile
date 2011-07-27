@@ -8,6 +8,7 @@ DRUPAL=drupal-7.4
 BASEPATH=www
 
 #Download and install Drush
+echo "#Download and install Drush"
 wget http://ftp.drupal.org/files/projects/drush-7.x-4.4.tar.gz
 tar -xzf drush-7.x-4.4.tar.gz
 rm -f drush-7.x-4.4.tar.gz
@@ -15,14 +16,14 @@ echo "alias drush='php ~/drush/drush.php'" >> ~/.bash_profile
 source .bash_profile
 
 #Download Drupal
+echo "#Download Drupal"
 drush dl $DRUPAL
 cp -pRa $DRUPAL/. $BASEPATH/
 rm -rf $DRUPAL
 cd $BASEPATH
 
-
 #Install Drupal
-echo "Drupal INstallation"
+echo "#Install Drupal"
 echo "Please enter the site directory: "
 read site_dir
 echo "Please enter the database name:"
@@ -36,6 +37,7 @@ drush site-install standard --sites-subdir=$site_dir --db-url=mysql://$db_user:$
 
 
 #Download Contribution modules
+echo "#Download Contribution modules"
 drush dl admin_menu-7.x-3.x-dev
 drush dl ctools-7.x-1.x-dev
 drush dl devel-7.x-1.x-dev
@@ -64,3 +66,57 @@ drush dl views-7.x-3.0-rc1
 drush dl xmlsitemap-7.x-2.0-beta3
 drush dl zen-7.x-3.x-dev
 
+#Go to site directory
+cd sites/$site_dir
+
+#Disable core modules
+drush dis color --yes
+drush dis comment --yes
+drush dis search --yes
+drush dis help --yes
+drush dis toolbar --yes
+
+#Uninstall disabled modules
+drush pm-uninstall color --yes
+drush pm-uninstall comment --yes
+drush pm-uninstall search --yes
+drush pm-uninstall help --yes
+drush pm-uninstall toolbar --yes
+
+
+#Enable core modules
+drush en php --yes
+drush en syslog --yes
+
+#Enable contribution modules
+drush en admin --yes
+drush en ctool --yes
+drush en devel --yes
+drush en zenophile --yes
+drush en zenophile_sidebars --yes
+drush en custom_formatters --yes
+drush en filefield_sources --yes
+drush en imce --yes
+drush en imce_crop --yes
+drush en imce_mkdir --yes
+drush en diff --yes
+drush en globalredirect --yes
+drush en iconizer --yes
+drush en image_caption --yes
+drush en image_caption_filter --yes
+drush en invisimail --yes
+drush en masquerade --yes
+drush en nodeblock --yes
+drush en page_title --yes
+drush en pathauto --yes #Enabel Token as well
+drush en extlink --yes
+drush en imce_wysiwyg --yes #Enable Wysiwyg as well
+drush en views --yes
+drush en views_ui --yes
+drush en xmlsitemap --yes
+drush en xmlsitemap_custom --yes
+drush en xmlsitemap_engines --yes
+drush en xmlsitemap_menu --yes
+drush en xmlsitemap_node --yes
+drush en xmlsitemap_taxonomy --yes
+drush en block_titlelink --yes
