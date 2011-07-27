@@ -89,7 +89,7 @@ drush en php --yes
 drush en syslog --yes
 
 #Enable contribution modules
-drush en admin --yes
+drush en admin_menu --yes
 drush en ctool --yes
 drush en devel --yes
 drush en zenophile --yes
@@ -120,3 +120,5 @@ drush en xmlsitemap_menu --yes
 drush en xmlsitemap_node --yes
 drush en xmlsitemap_taxonomy --yes
 drush en block_titlelink --yes
+
+echo "#Done."
