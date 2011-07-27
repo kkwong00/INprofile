@@ -22,6 +22,14 @@ cp -pRa $DRUPAL/. $BASEPATH/
 rm -rf $DRUPAL
 cd $BASEPATH
 
+#Download Tinymce
+echo '#Download Tinymce'
+mkdir sites/all/libraries
+wget --no-check-certificate http://tinymce.moxiecode.com/track.php?url=http%3A%2F%2Fgithub.com%2Fdownloads%2Ftinymce%2Ftinymce%2Ftinymce_3.4.3.2.zip
+unzip tinymce_3.4.3.2.zip
+mv tinymce sites//all//libraries/
+rm -f tinymce_3.4.3.2.zip
+
 #Install Drupal
 echo "#Install Drupal"
 echo "Please enter the site directory: "
