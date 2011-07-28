@@ -43,8 +43,42 @@ read db_pwd
 
 drush site-install standard --sites-subdir=$site_dir --db-url=mysql://$db_user:$db_pwd@localhost/$db_name --account-name='Site Admin' --account-pass=$db_pwd
 
+#Go to site directory
+cd sites/$site_dir
 
-#Download Contribution modules
+#Change site directory permission
+chmod 755 .
+
+#Change files folder permission
+chmod 777 files
+
+#Create modules folder
+mkdir modules
+
+#Create themes folder
+mkdir themes
+
+
+#Core modules - Disable
+drush dis color --yes
+drush dis comment --yes
+drush dis search --yes
+drush dis help --yes
+drush dis toolbar --yes
+
+#Core modules - Uninstall
+drush pm-uninstall color --yes
+drush pm-uninstall comment --yes
+drush pm-uninstall search --yes
+drush pm-uninstall help --yes
+drush pm-uninstall toolbar --yes
+
+#Core modules - Enable
+drush en php --yes
+drush en syslog --yes
+
+  
+#Contribution modules - Download
 echo "#Download Contribution modules"
 drush dl admin_menu-7.x-3.x-dev
 drush dl ctools-7.x-1.x-dev
@@ -74,41 +108,7 @@ drush dl views-7.x-3.0-rc1
 drush dl xmlsitemap-7.x-2.0-beta3
 drush dl zen-7.x-3.x-dev
 
-#Go to site directory
-cd sites/$site_dir
-
-#Change site directory permission
-chmod 755 .
-
-#Change files folder permission
-chmod 777 files
-
-#Create modules folder
-mkdir modules
-
-#Create themes folder
-mkdir themes
-
-#Disable core modules
-drush dis color --yes
-drush dis comment --yes
-drush dis search --yes
-drush dis help --yes
-drush dis toolbar --yes
-
-#Uninstall disabled modules
-drush pm-uninstall color --yes
-drush pm-uninstall comment --yes
-drush pm-uninstall search --yes
-drush pm-uninstall help --yes
-drush pm-uninstall toolbar --yes
-
-
-#Enable core modules
-drush en php --yes
-drush en syslog --yes
-
-#Enable contribution modules
+#Contribution modules - Install
 drush en admin_menu --yes
 drush en ctool --yes
 drush en devel --yes
@@ -140,6 +140,9 @@ drush en xmlsitemap_menu --yes
 drush en xmlsitemap_node --yes
 drush en xmlsitemap_taxonomy --yes
 drush en block_titlelink --yes
+
+
+#Contribution modules - Configure
 
 #Change xmlsitemap premission
 chmod 777 files/xmlsitemap
