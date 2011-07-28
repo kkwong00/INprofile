@@ -80,6 +80,15 @@ cd sites/$site_dir
 #Change site directory permission
 chmod 755 .
 
+#Change files folder permission
+chmod 777 files
+
+#Create modules folder
+mkdir modules
+
+#Create themes folder
+mkdir themes
+
 #Disable core modules
 drush dis color --yes
 drush dis comment --yes
