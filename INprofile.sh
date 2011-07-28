@@ -141,4 +141,7 @@ drush en xmlsitemap_node --yes
 drush en xmlsitemap_taxonomy --yes
 drush en block_titlelink --yes
 
+#Change xmlsitemap premission
+chmod 777 files/xmlsitemap
+
 echo "#Done."
