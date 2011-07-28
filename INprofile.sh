@@ -77,6 +77,9 @@ drush dl zen-7.x-3.x-dev
 #Go to site directory
 cd sites/$site_dir
 
+#Change site directory permission
+chmod 755 .
+
 #Disable core modules
 drush dis color --yes
 drush dis comment --yes
