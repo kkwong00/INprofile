@@ -4,7 +4,7 @@
 
 #Variables
 
-DRUPAL=drupal-7.4
+DRUPAL=drupal-7.7
 BASEPATH=www
 
 #Download and install Drush
@@ -62,9 +62,9 @@ drush dl iconizer-7.x-1.1
 drush dl image_caption-7.x-1.0-beta3
 drush dl invisimail-7.x-1.x-dev
 drush dl masquerade-7.x-1.x-dev
-drush dl nodeblock-7.x-1.1
+drush dl nodeblock-7.x-1.2
 drush dl pathauto-7.x-1.x-dev
-drush dl token-7.x-1.0-beta2
+drush dl token-7.x-1.0-beta3
 drush dl page_title-7.x-2.x-dev
 drush dl google_analytics-7.x-1.x-dev
 drush dl extlink-7.x-1.12
